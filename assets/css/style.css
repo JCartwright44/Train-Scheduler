@@ -1,0 +1,15 @@
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+#card-title {
+    background-color: blue;
+}
+
+.card {
+    margin: 16px;
+}
