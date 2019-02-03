@@ -13,3 +13,35 @@ h3 {
 .card {
     margin: 16px;
 }
+
+.card-header {
+    background-color: blue;
+    color: white;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.card {
+    opacity: .9;
+}
+
+
+.headTrain {
+    background-image: url(../images/train.jpg);
+    background-position-y:-365px;
+    background-size: 110%;
+    background-repeat: no-repeat;
+    color: whitesmoke;
+    text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px 1px 0 #000,
+         1px 1px 0 #000;  
+}
+
+body {
+    background-image: url(../images/background.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position-y: -300px;
+}

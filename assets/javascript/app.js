@@ -48,26 +48,31 @@ database.ref().on('child_added', function(childSnapshot){
     var minutesAway = 0;
 
     var curr = new moment().format('hh:mm a');
-    console.log('now ' + curr);
+       console.log('now ' + curr);
 
     var mFirstTime = new moment(firstTime, 'hh:mm a');
-    console.log('First time ' + moment(mFirstTime).format('hh:mm a'))
+        console.log('First time ' + moment(mFirstTime).format('hh:mm a'))
 
     var diff = moment().diff(moment(firstTime, 'hh:mm'), 'minutes');
-    console.log('diff ' + diff)
+        console.log('diff ' + diff)
 
     var mins = diff / frequency;
     var iMins = parseInt(mins) + 1;
     var timeToNext = iMins * frequency;
-    console.log(timeToNext);
+        console.log('time to next: ' + timeToNext);
 
+    var mNextTime = mFirstTime.add(timeToNext, 'minutes')
+       console.log('next: ' + moment(mNextTime).format('hh:mm'));
+    var timeTill = moment().diff(moment(mNextTime, 'hh:mm'), 'minutes');
+    var intTill = Math.abs(timeTill);
+       console.log('time till: ' + intTill);
 
     var newRow = $('<tr>').append(
         $('<td>').text(trainName),
         $('<td>').text(destination),
         $('<td>').text(frequency),
-        $('<td>').text('--'),
-        $('<td>').text(minutesAway)
+        $('<td>').text(moment(mNextTime).format('hh:mm a')),
+        $('<td>').text(intTill)
     )
 
     $('#trainTable').append(newRow);
