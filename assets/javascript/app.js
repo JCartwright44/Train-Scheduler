@@ -33,7 +33,46 @@ $('#submitButton').on('click', function(event){
     $('#trainName').val('');
     $('#destination').val('');
     $('#firstTime').val('');
-    $('#frequeny').val('');
+    $('#frequency').val('');
 
 })
 
+
+database.ref().on('child_added', function(childSnapshot){
+
+    var trainName = childSnapshot.val().name;
+    var destination = childSnapshot.val().dest;
+    var firstTime = childSnapshot.val().time;
+    var frequency = childSnapshot.val().freq;
+
+    var minutesAway = 0;
+
+    var curr = new moment().format('hh:mm a');
+    console.log('now ' + curr);
+
+    var mFirstTime = new moment(firstTime, 'hh:mm a');
+    console.log('First time ' + moment(mFirstTime).format('hh:mm a'))
+
+    var diff = moment().diff(moment(firstTime, 'hh:mm'), 'minutes');
+    console.log('diff ' + diff)
+
+    var mins = diff / frequency;
+    var iMins = parseInt(mins) + 1;
+    var timeToNext = iMins * frequency;
+    console.log(timeToNext);
+
+
+    var newRow = $('<tr>').append(
+        $('<td>').text(trainName),
+        $('<td>').text(destination),
+        $('<td>').text(frequency),
+        $('<td>').text('--'),
+        $('<td>').text(minutesAway)
+    )
+
+    $('#trainTable').append(newRow);
+
+
+})
+
+// console.log(moment().format('hh:mm'));
